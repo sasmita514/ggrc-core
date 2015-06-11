@@ -384,3 +384,61 @@
 .popover-manual-close {
   @include box-shadow(0 0 7px rgba(0,0,0, .25));
 }
+
+.popover-dropdown-wrap {
+  width: 402px;
+  &.bottom {
+    margin-top: 3px;
+  }
+  .popover-inner {
+    @include border-radius(0);
+    @include box-shadow(0 5px 10px rgba(0,0,0, .2));
+    border: 1px solid rgba(0,0,0, .2);
+    background: none;
+    width: 400px;
+  }
+  .popover-content {
+    @include border-radius(0);
+  }
+  .popover-title,
+  .arrow {
+    display: none;
+  }
+}
+
+.popup-dropdown-wrap {
+  @include border-radius(0);
+  right: -12px;
+  left: auto;
+  top: 20px;
+  padding: 14px 30px 20px 30px;
+  min-width: 340px;
+  text-align: left;
+  h5 {
+    font-size: 16px;
+    font-weight: normal;
+    text-transform: none;
+    line-height: 24px;
+  }
+  label {
+    font-size: 12px;
+  }
+  .attr-list {
+    margin-top: 11px;
+    margin-bottom: 14px;
+    li {
+      margin: 0;
+      text-transform: none;
+      label {
+        display: inline-block;
+        cursor: pointer;
+      }
+      &.disabled {
+        color: $gray;
+        label {
+          cursor: not-allowed;
+        }
+      }
+    }
+  }
+}

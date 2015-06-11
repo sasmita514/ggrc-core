@@ -1111,7 +1111,8 @@ p {
   }
 }
 
-.dropdown-menu {
+.dropdown-menu,
+.popup-dropdown-wrap {
   &.quick-search {
     min-width: 100%;
     padding: 15px 20px;
