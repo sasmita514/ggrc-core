@@ -68,7 +68,8 @@
         return 'bottom';
       }.bind(this),
       content: function () {
-        return this.template.find('.popup__content').html();
+        //return this.template.find('.popup__content').html();
+        return this.$body.find('.popup__content');
       }.bind(this)
     }).data('popover');
   };
