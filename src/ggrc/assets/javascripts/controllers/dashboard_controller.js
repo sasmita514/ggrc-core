@@ -27,24 +27,26 @@ can.Control("CMS.Controllers.Dashboard", {
 
 }, {
     init: function(el, options) {
-      CMS.Models.DisplayPrefs.getSingleton().then(function (prefs) {
-        this.display_prefs = prefs;
+      $.when(getCustomAttributes()).then(function(){
+        CMS.Models.DisplayPrefs.getSingleton().then(function (prefs) {
+          this.display_prefs = prefs;
 
-        this.init_page_title();
-        this.init_page_help();
-        this.init_page_header();
-        this.init_widget_descriptors();
-        if (!this.inner_nav_controller) {
-          this.init_inner_nav();
-        }
-        this.update_inner_nav();
+          this.init_page_title();
+          this.init_page_help();
+          this.init_page_header();
+          this.init_widget_descriptors();
+          if (!this.inner_nav_controller) {
+            this.init_inner_nav();
+          }
+          this.update_inner_nav();
 
-        // Before initializing widgets, hide the container to not show
-        // loading state of multiple widgets before reducing to one.
-        this.hide_widget_area();
-        this.init_default_widgets();
-        this.init_widget_area();
-        this.init_info_pin();
+          // Before initializing widgets, hide the container to not show
+          // loading state of multiple widgets before reducing to one.
+          this.hide_widget_area();
+          this.init_default_widgets();
+          this.init_widget_area();
+          this.init_info_pin();
+        }.bind(this));
       }.bind(this));
     }
 
@@ -176,10 +178,8 @@ can.Control("CMS.Controllers.Dashboard", {
     }
 
   , init_default_widgets: function() {
-      $.when(getCustomAttributes()).always(function(){
-        can.each(this.options.default_widgets, function (name) {
-          this.add_dashboard_widget_from_descriptor(this.options.widget_descriptors[name]);
-        }.bind(this));
+      can.each(this.options.default_widgets, function (name) {
+        this.add_dashboard_widget_from_descriptor(this.options.widget_descriptors[name]);
       }.bind(this));
     }
 
