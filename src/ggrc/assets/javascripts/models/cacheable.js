@@ -12,13 +12,14 @@
 
 function get_custom_attr_list(model) {
   var custom_list = [];
-  can.each(GGRC.custom_attr_defs, function (def, i) {
+  can.each(GGRC.custom_attr_defs, function (def) {
     if (def.definition_type === model && def.attribute_type !== 'Rich Text') {
-      var obj = {};
-      obj.attr_title = obj.attr_name = def.title;
-      obj.attr_type = 'custom';
-      obj.attr_sort_field = 'custom:'+obj.attr_name;
-      custom_list.push(obj);
+      custom_list.push({
+        attr_title : def.title,
+        attr_name : def.title,
+        attr_type :'custom',
+        attr_sort_field : 'custom:' + def.title
+      });
     }
   });
   return custom_list;
@@ -400,17 +401,14 @@ can.Model("can.Model.Cacheable", {
         model_type = this.table_singular,
         custom_attr_list = get_custom_attr_list(model_type);
 
-    if(custom_attr_list.length === 0)
+    if(custom_attr_list.length === 0) {
       return;
+    }
 
-    if (this.tree_view_options.attr_list) {
+    if(this.tree_view_options.attr_list) {
       this.tree_view_options.attr_list = this.tree_view_options.attr_list.concat(custom_attr_list);
     } else if (this.tree_view_options) {
-      var attr_list = [];
-      can.each(can.Model.Cacheable.attr_list, function (item) {
-        attr_list.push(item);
-      });
-      this.tree_view_options.attr_list = attr_list.concat(custom_attr_list);
+      this.tree_view_options.attr_list = [].concat(can.Model.Cacheable.attr_list, custom_attr_list);
     }
   }
 
