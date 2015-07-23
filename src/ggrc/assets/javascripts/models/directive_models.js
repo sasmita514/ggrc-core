@@ -107,7 +107,6 @@ CMS.Models.Directive("CMS.Models.Standard", {
   , init : function() {
     can.extend(this.attributes, CMS.Models.Directive.attributes);
     can.extend(this.tree_view_options, CMS.Models.Directive.tree_view_options);
-    this.tree_view_options.attr_list = can.Model.Cacheable.attr_list;
     this._super.apply(this, arguments);
   }
 }, {});
@@ -137,7 +136,6 @@ CMS.Models.Directive("CMS.Models.Regulation", {
   , init : function() {
     can.extend(this.attributes, CMS.Models.Directive.attributes);
     can.extend(this.tree_view_options, CMS.Models.Directive.tree_view_options);
-    this.tree_view_options.attr_list = can.Model.Cacheable.attr_list;
     this._super.apply(this, arguments);
   }
 }, {});
@@ -202,7 +200,6 @@ CMS.Models.Directive("CMS.Models.Contract", {
   , init : function() {
     can.extend(this.attributes, CMS.Models.Directive.attributes);
     can.extend(this.tree_view_options, CMS.Models.Directive.tree_view_options);
-    this.tree_view_options.attr_list = can.Model.Cacheable.attr_list;
     this._super.apply(this, arguments);
   }
 }, {});
