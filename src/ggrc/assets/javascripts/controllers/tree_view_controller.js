@@ -528,7 +528,7 @@ CMS.Controllers.TreeLoader("CMS.Controllers.TreeView", {
         model_definition = model().class.root_object,
         mandatory_attr_names, display_attr_names;
 
-    //get standard attrs for each model
+    //get standard attrs and custom attributes for each model
     can.each(model.tree_view_options.attr_list || can.Model.Cacheable.attr_list, function (item) {
         if (!item.attr_sort_field) {
           item.attr_sort_field = item.attr_name;
@@ -539,18 +539,6 @@ CMS.Controllers.TreeLoader("CMS.Controllers.TreeView", {
     mandatory_attr_names = model.tree_view_options.mandatory_attr_names ?
       model.tree_view_options.mandatory_attr_names :
         can.Model.Cacheable.tree_view_options.mandatory_attr_names;
-
-    //get custom attrs
-    can.each(GGRC.custom_attr_defs, function (def, i) {
-      if (def.definition_type === model_definition && def.attribute_type !== 'Rich Text') {
-        var obj = {};
-        obj.attr_title = obj.attr_name = def.title;
-        obj.display_status = false;
-        obj.attr_type = 'custom';
-        obj.attr_sort_field = 'custom:'+obj.attr_name;
-        select_attr_list.push(obj);
-      }
-    });
 
     //Get the display attr_list from local storage
     saved_attr_list = this.display_prefs.getTreeViewHeaders(model_name);

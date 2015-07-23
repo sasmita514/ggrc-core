@@ -15,6 +15,9 @@
     create : "POST /api/issues",
     mixins : ["ownable", "contactable"],
     is_custom_attributable: true,
+    tree_view_options : {
+      attr_list: can.Model.Cacheable.attr_list
+    },
     attributes : {
       context : "CMS.Models.Context.stub",
       modified_by : "CMS.Models.Person.stub",

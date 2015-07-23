@@ -7,7 +7,22 @@
 
 //= require can.jquery-all
 
+
 (function(can) {
+
+function get_custom_attr_list(model) {
+  var custom_list = [];
+  can.each(GGRC.custom_attr_defs, function (def, i) {
+    if (def.definition_type === model && def.attribute_type !== 'Rich Text') {
+      var obj = {};
+      obj.attr_title = obj.attr_name = def.title;
+      obj.attr_type = 'custom';
+      obj.attr_sort_field = 'custom:'+obj.attr_name;
+      custom_list.push(obj);
+    }
+  });
+  return custom_list;
+};
 
 var makeFindRelated = function(thistype, othertype) {
   return function(params) {
@@ -376,6 +391,26 @@ can.Model("can.Model.Cacheable", {
         GGRC.custom_attributable_types = [];
       }
       GGRC.custom_attributable_types.push($.extend({}, this));
+      this.update_custom_attr_list();
+    }
+  }
+
+  , update_custom_attr_list: function () {
+    var model_name = this.model_singular,
+        model_type = this.table_singular,
+        custom_attr_list = get_custom_attr_list(model_type);
+
+    if(custom_attr_list.length === 0)
+      return;
+
+    if (this.tree_view_options.attr_list) {
+      this.tree_view_options.attr_list = this.tree_view_options.attr_list.concat(custom_attr_list);
+    } else if (this.tree_view_options) {
+      var attr_list = [];
+      can.each(can.Model.Cacheable.attr_list, function (item) {
+        attr_list.push(item);
+      });
+      this.tree_view_options.attr_list = attr_list.concat(custom_attr_list);
     }
   }
 

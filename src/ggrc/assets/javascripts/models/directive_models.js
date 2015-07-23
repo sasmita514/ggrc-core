@@ -101,10 +101,13 @@ CMS.Models.Directive("CMS.Models.Standard", {
   }
   , is_custom_attributable: true
   , attributes : {}
+  , tree_view_options : {}
   , meta_kinds : [ "Standard" ]
   , cache : can.getObject("cache", CMS.Models.Directive, true)
   , init : function() {
     can.extend(this.attributes, CMS.Models.Directive.attributes);
+    can.extend(this.tree_view_options, CMS.Models.Directive.tree_view_options);
+    this.tree_view_options.attr_list = can.Model.Cacheable.attr_list;
     this._super.apply(this, arguments);
   }
 }, {});
@@ -128,10 +131,13 @@ CMS.Models.Directive("CMS.Models.Regulation", {
   }
   , is_custom_attributable: true
   , attributes : {}
+  , tree_view_options : {}
   , meta_kinds : [ "Regulation" ]
   , cache : can.getObject("cache", CMS.Models.Directive, true)
   , init : function() {
     can.extend(this.attributes, CMS.Models.Directive.attributes);
+    can.extend(this.tree_view_options, CMS.Models.Directive.tree_view_options);
+    this.tree_view_options.attr_list = can.Model.Cacheable.attr_list;
     this._super.apply(this, arguments);
   }
 }, {});
@@ -190,10 +196,13 @@ CMS.Models.Directive("CMS.Models.Contract", {
   , is_custom_attributable: true
   , attributes : {
   }
+  , tree_view_options : {}
   , meta_kinds : [ "Contract" ]
   , cache : can.getObject("cache", CMS.Models.Directive, true)
   , init : function() {
     can.extend(this.attributes, CMS.Models.Directive.attributes);
+    can.extend(this.tree_view_options, CMS.Models.Directive.tree_view_options);
+    this.tree_view_options.attr_list = can.Model.Cacheable.attr_list;
     this._super.apply(this, arguments);
   }
 }, {});

@@ -764,6 +764,9 @@ can.Model.Cacheable("CMS.Models.ControlAssessment", {
   create : "POST /api/control_assessments",
   mixins : ["ownable", "contactable", "unique_title"],
   is_custom_attributable: true,
+  tree_view_options : {
+    attr_list: can.Model.Cacheable.attr_list
+  },
   attributes : {
     control : "CMS.Models.Control.stub",
     context : "CMS.Models.Context.stub",
